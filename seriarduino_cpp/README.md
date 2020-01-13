@@ -27,7 +27,7 @@ SeriArduino raspberry;
 String input;
 float value;
 
-void setup () {
+void setup() {
     // We set the serial to 9600 bauds (be sure to use the same on the Python side)
     Serial.begin(9600);
 }

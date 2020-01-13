@@ -1,7 +1,8 @@
 #ifndef SERIARDUINO_H_
 # define SERIARDUINO_H_
 
-class SeriArduino {
+class SeriArduino
+{
 
 public:
   void    write(String);
