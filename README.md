@@ -1,39 +1,20 @@
 # SeriArduino
 
-## Install from releases
+## Install
 
 ### For Arduino
 
-* Download `seriarduino_cpp.zip` from [releases](https://github.com/norech/SeriArduino/releases) 
-* Open the Arduino IDE
-* Go into `Sketch` > `Include a library` and add the library from the `seriarduino_cpp.zip` file
+* [See here](./seriarduino_cpp/README.md)
 
 ### For Python
 
-* Open the terminal
-* Execute `pip install seriarduino`
+* [See here](./seriarduino_py/README.md)
 
-## Install from repo
-
-### For Arduino 
-
-* Clone the repo
-* Compress the `seriarduino_cpp` folder into `seriarduino_cpp.zip`
-* Open the Arduino IDE
-* Go into `Sketch` > `Include a library` and add the library from the `seriarduino_cpp.zip` file
-
-### For Python
-
-* Clone the repo
-* Open the `seriarduino_py` folder in a terminal
-* In the terminal, enter `./setup.py install`
-
-
-### Usage
+## Usage
 
 The following sample is linking an Arduino with a Raspberry Pi:
 
-#### Arduino side
+### Arduino side
 ```cpp
 #include <SeriArduino.h>
 
@@ -70,7 +51,7 @@ void loop() {
 }
 ```
 
-#### Python side (Raspberry Pi)
+### Python side (Raspberry Pi)
 
 ```python
 from seriarduino import SeriArduino
