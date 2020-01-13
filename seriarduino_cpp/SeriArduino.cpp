@@ -2,60 +2,75 @@
 #include <HardwareSerial.h>
 #include "SeriArduino.h" 
 
-void SeriArduino::loop() {
-  // Don't loop if has waiting data
-  if(hasWaitingData) return;
-  
+void      SeriArduino::loop(void)
+{
+  // Don't loop if already has awaiting data
+  if (hasAwaitingData)
+  {
+    return;
+  }
+
   // While has data in serial port
-  while(Serial.available() > 0 && !hasWaitingData) {
+  while (Serial.available() > 0 && !hasAwaitingData)
+  {
     lastCharReceived = Serial.read();
-      
-    if(isInstruction) {
-      if(lastCharReceived == '<') {
-        hasWaitingData = 1;
-        isInstruction = 0;
-      } else {
-        readString += lastCharReceived;
-      }
-    } else if(lastCharReceived == '>') {
+
+    if (isInstruction && lastCharReceived == '<')
+    {
+      hasAwaitingData = 1;
+      isInstruction = 0;
+    }
+    else if (isInstruction)
+    {
+      readString += lastCharReceived;
+    }
+    else if (lastCharReceived == '>')
+    {
       isInstruction = 1;
     }
-      
-  }    
+  }
 }
 
-void SeriArduino::write(String data) {
+void      SeriArduino::write(String data)
+{
   Serial.print(">");
   Serial.print(data);
   Serial.println("<");
 }
 
-void SeriArduino::write(float data) {
+void      SeriArduino::write(float data)
+{
   Serial.print(">");
   Serial.print(data);
   Serial.println("<");
 }
 
-void SeriArduino::write(int data) {
+void      SeriArduino::write(int data)
+{
   Serial.print(">");
   Serial.print(data);
   Serial.println("<");
 }
 
-int SeriArduino::available() {
+int       SeriArduino::available(void)
+{
   loop();
-  return hasWaitingData; 
+  return (hasAwaitingData);
 }
 
-String SeriArduino::read() {
-  while(!hasWaitingData) {
+String    SeriArduino::read(void)
+{
+  String  returnedReadString;
+
+  while (!hasAwaitingData)
+  {
     // wait for data (calling loop() to process incoming data)
     loop();
   }
-  
-  hasWaitingData = 0;
+
+  hasAwaitingData = 0;
   returnedReadString = readString;
   readString = "";
-  
-  return returnedReadString;
+
+  return (returnedReadString);
 }
