@@ -33,18 +33,18 @@ void loop() {
     if(raspberry.available()) {
         // We read the data and save it into the "input" variable
         input = raspberry.read();
-	
-	    // We convert the input into a float,
+
+        // We convert the input into a float,
         // to do some computations later
-	    value = input.toFloat();
-    
+        value = input.toFloat();
+
         Serial.println("We got a " + String(value));
-	
-	    // A simple computation
-	    value = value * 2;
-    
-	    // We send the new data to the Raspberry Pi
-    	raspberry.write(value);
+
+        // A simple computation
+        value = value * 2;
+
+        // We send the new data to the Raspberry Pi
+        raspberry.write(value);
     }
   
     delay(100);
