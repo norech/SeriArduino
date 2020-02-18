@@ -16,6 +16,7 @@ private:
   int     hasAwaitingData;
   int     isInstruction;
   char    lastCharReceived;
+  void    loop();
 
 };
 
